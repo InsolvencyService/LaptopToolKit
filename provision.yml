@@ -1,0 +1,37 @@
+---
+- name: install all the things
+  hosts: localhost
+  connection: local
+  become: True
+  tasks:
+    - name: install pywinrm for ansible windows support
+      pip:
+        name: pywinrm
+        state: latest
+
+    - name: add oracle virtualbox apt key
+      apt_key:
+        url: http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc
+        state: present
+
+    - name: add oracle virtualbox repo
+      apt_repository:
+        repo: deb http://download.virtualbox.org/virtualbox/debian trusty contrib
+        state: present
+      register: vbox_repo
+
+    - name: install virtualbox
+      apt:
+        package: virtualbox
+        state: latest
+        update_cache: True
+      when: vbox_repo.changed
+
+    - name: check if vagrant is installed
+      stat: path=/usr/bin/vagrant
+      register: vagrant
+
+    - name: install vagrant from website
+      apt:
+        deb: https://releases.hashicorp.com/vagrant/1.9.1/vagrant_1.9.1_x86_64.deb
+      when: not vagrant.stat.exists
