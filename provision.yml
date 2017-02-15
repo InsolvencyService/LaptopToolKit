@@ -3,22 +3,43 @@
   hosts: localhost
   connection: local
   become: True
+  #sudo: True
+
+  vars:
+    - google_apt_file: /etc/apt/sources.list.d/google-chrome.list
+
   tasks:
+
+# Install Ansible    ************* THIS TASK BREAKS THE PLAYBOOK - apt-get remove --purge ansible ********************
+
+#    - name: install ansible
+#      apt:
+#        name: ansible
+#        state: latest
+
+# Install Pywinrm
+
     - name: install pywinrm for ansible windows support
       pip:
         name: pywinrm
         state: latest
 
+# Install Virtualbox
+
     - name: add oracle virtualbox apt key
       apt_key:
         url: http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc
         state: present
+      tags:
+        - virtualbox
 
     - name: add oracle virtualbox repo
       apt_repository:
         repo: deb http://download.virtualbox.org/virtualbox/debian trusty contrib
         state: present
       register: vbox_repo
+      tags:
+        - virtualbox
 
     - name: install virtualbox
       apt:
@@ -26,12 +47,345 @@
         state: latest
         update_cache: True
       when: vbox_repo.changed
+      tags:
+        - virtualbox
+
+# Install Vagrant
 
     - name: check if vagrant is installed
       stat: path=/usr/bin/vagrant
       register: vagrant
+      tags:
+        - vagrant
 
     - name: install vagrant from website
       apt:
         deb: https://releases.hashicorp.com/vagrant/1.9.1/vagrant_1.9.1_x86_64.deb
       when: not vagrant.stat.exists
+      tags:
+        - vagrant
+
+# are these needed?
+#vagrant plugin install vagrant-reload (i.e. devbox_gui.vm.provision :reload)
+#vagrant plugin install vagrant-hosts
+#vagrant plugin install vagrant-vbox-snapshot
+#vagrant plugin install vagrant-hostmanager
+#vagrant plugin install vagrant-vbguest
+
+# Install Slack
+
+    - name: install slack
+      apt:
+        package: slack
+        state: latest
+      tags:
+        - slack
+
+# Install Google Chrome
+
+    - name: Does the Google apt file exist?
+      command: test -f {{google_apt_file}}
+      register: google_apt_exists
+      ignore_errors: True
+      tags:
+        - chrome
+
+    - name: Add Google Chrome key
+      shell: wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+      when: google_apt_exists.rc == 1
+      tags:
+        - chrome
+
+    - name: Add Google Chrome repo
+      copy: content="deb http://dl.google.com/linux/chrome/deb/ stable main" dest={{google_apt_file}} owner=root group=root mode=644
+      when: google_apt_exists.rc == 1
+      tags:
+        - chrome
+
+    - name: Update apt cache
+      apt: update_cache=yes
+      when: google_apt_exists.rc == 1
+      tags:
+        - chrome
+
+    - name: check if Google Chrome is installed
+      stat: path=/usr/bin/google_chrome
+      register: google_chrome
+      tags:
+        - chrome
+
+    - name: Install Google Chrome
+      apt: pkg=google-chrome-stable state=installed
+      when: not google_chrome.stat.exists
+      tags:
+        - chrome
+
+# Install Libre Office
+
+    - name: check if libre office is installed
+      stat: path=/usr/bin/libre_office
+      register: libre_office
+      tags:
+        - libreoffice
+
+    - name: get libre office ppa repo
+      apt_repository:
+        repo: 'ppa:libreoffice/ppa'
+        state: present
+      tags:
+        - libreoffice
+
+    - name: install libre office
+      apt:
+        package: libreoffice
+        state: latest
+        update_cache: True
+      tags:
+        - libreoffice
+
+# Install Firefox
+
+    - name: check if firefox is installed
+      stat: path=/usr/bin/firefox
+      register: firefox
+      tags:
+        - firefox
+
+    - name: install firefox
+      apt:
+        name: firefox
+        state: present
+      when: not firefox.stat.exists
+      tags:
+        - firefox
+
+# Install Jenkins Job Builder
+
+    - name: install jenkins job builder
+      apt:
+        update_cache: yes
+        name: jenkins-job-builder
+        state: build-dep
+      tags:
+        - jenkinsjob
+
+# Install Ruby
+
+    - name: install ruby
+      apt:
+        name: ruby
+        state: latest
+      tags:
+        - ruby
+
+# Install PhantomJS
+
+    - name: install phantomjs
+      apt:
+        name: phantomjs
+        state: present
+      tags:
+        - phantomjs
+
+# Install Selenium
+
+#    - name: is selenium installed?
+#      stat: path=/usr/bin/python_selenium
+#      register: python_selenium_exists
+#      ignore_errors: True
+#    - debug:
+#       msg: "Path exists and is a directory"
+#      when: p.stat.isdir is defined and p.stat.isdir
+
+    - name: install selenium tools
+      apt:
+        name: python-selenium
+        state: latest
+#        when: python_selenium_exists.rc == 1
+      tags:
+        - selenium
+
+
+
+# Install Python Tools
+
+    - name: check if python is installed
+      stat: path=/usr/bin/python
+      register: python
+
+    - name: 'install python'
+      raw: sudo apt-get -y install python-simplejson
+      when: not python.stat.exists
+      tags:
+        - python
+
+# Install RDesktop
+
+    - name: install rdesktop
+      apt:
+        name: rdesktop
+        state: latest
+      tags:
+        - rdesktop
+
+# Install Gnome-Terminal
+
+    - name: install gnome-terminal
+      apt:
+        name: gnome-terminal
+        state: latest
+      tags:
+        - gnome
+
+# Install Docker
+
+    - name: install Docker
+      apt:
+        name: docker
+        state: latest
+      tags:
+        - docker
+
+# Install GIT
+
+    - name: install git
+      apt:
+        name: git
+        state: latest
+      tags:
+        - git
+
+# Install Tree
+    - name: install tree
+      apt:
+        name: tree
+        state: latest
+      tags:
+        - tree
+
+# Install Whois
+    - name: install whois
+      apt:
+        name: whois
+        state: latest
+      tags:
+        - whois
+
+# Install Htop
+    - name: install htop
+      apt:
+        name: htop
+        state: latest
+      tags:
+        - htop
+
+# Install NPM
+    - name: install NPM
+      apt:
+        name: npm
+        state: latest
+      tags:
+        - npm
+
+# Install NCDU
+    - name: install NCDU
+      apt:
+        name: ncdu
+        state: latest
+      tags:
+        - ncdu
+
+# Install vim
+    - name: install vim
+      apt:
+        name: vim
+        state: latest
+      tags:
+        - vim
+
+# Install pip
+    - name: install pip
+      apt:
+        name: python-pip
+        state: latest
+        update_cache: yes
+      tags:
+        - pip
+
+# Install Virtual Env
+    - name: install virtual env
+      apt:
+        name: virtualenv-clone
+        state: latest
+      tags:
+        - virtualenv
+
+    - name: install virtual env wrapper
+      apt:
+        name: virtualenvwrapper
+        state: latest
+      tags:
+        - virtualenv
+
+# Install Eclipse
+    - name: install eclipse
+      apt:
+        name: eclipse
+        state: latest
+      tags:
+        - eclipse
+
+# Install PyCharm Community
+
+## install repo and do apt install
+
+    - name: add repo for ubuntu make for pycharm install
+      apt_repository:
+        repo: ppa:ubuntu-desktop/ubuntu-make
+        state: present
+      tags:
+        -  pycharm
+
+    - name: install ubuntu-make
+      apt:
+        package: ubuntu-make
+        state: present
+        update_cache: True
+      tags:
+        - pycharm
+
+    - name: install pycharm community
+      shell: yes '' | umake ide pycharm
+      tags:
+        - pycharm
+
+
+# Install Vmware vcloud tools
+
+    - name: Install vmware tools
+      apt:
+        name: open-vm-tools-desktop
+        state: latest
+        update_cache: yes
+      tags:
+        - vcloud
+
+# Install Classic Menu indicator
+
+    - name: install Classic Menu indicator
+      apt:
+        name: classicmenu-indicator
+        state: latest
+      tags:
+        - classicmenu
+
+
+# Update and upgrade apt packages
+
+    - name: update and upgrade apt packages
+      apt: >
+        upgrade=yes
+        update_cache=yes
+        cache_valid_time=3600
+
+
