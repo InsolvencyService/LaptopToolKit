@@ -1,5 +1,6 @@
 ## Introduction
 
+New starters to the Insolvency Service can downlaod this repository and setup there development environment for ubuntu. Using Ansible this process is completely automated!
 
 ## Installation
 First, you need to install Ansible :
