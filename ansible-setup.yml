@@ -4,12 +4,12 @@
   hosts: localhost
   roles:
   # All roles
-    #- { role: chrome, become: true }
+    - { role: chrome, become: true }
     - { role: chromeDriverSelenium, become: true }
     - { role: docker, become: true }
     #- { role: java-jdk, become: true }
     - { role: jenkinsJobBuilder, become: true }
-    - { role: libreOffice, become: true }
+    #- { role: libreOffice, become: true }
     - { role: linuxTools, become: true }
     - { role: npm, become: true }
     - { role: phantomJS, become: true }
