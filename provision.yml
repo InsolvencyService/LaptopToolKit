@@ -7,15 +7,25 @@
 
   vars:
     - google_apt_file: /etc/apt/sources.list.d/google-chrome.list
+    - tmp_dir: /tmp/chromedriver
 
   tasks:
 
-# Install Ansible    ************* THIS TASK BREAKS THE PLAYBOOK - apt-get remove --purge ansible ********************
+# Install Ansible
 
-#    - name: install ansible
-#      apt:
-#        name: ansible
-#        state: latest
+    - name: install ansible
+      apt_repository:
+        repo: ppa:ansible/ansible
+        state: present
+#      when: not ansible.stat.exists
+
+    - name: install ansible
+      apt:
+        name: ansible
+        state: present
+      tags:
+        -  ansible
+
 
 # Install Pywinrm
 
@@ -71,6 +81,7 @@
 #vagrant plugin install vagrant-vbox-snapshot
 #vagrant plugin install vagrant-hostmanager
 #vagrant plugin install vagrant-vbguest
+
 
 # Install Slack
 
@@ -204,6 +215,75 @@
 #        when: python_selenium_exists.rc == 1
       tags:
         - selenium
+
+# Install Yum
+
+    - name: install yum
+      apt:
+        package: yum
+        state: latest
+      tags:
+        - yum
+        - chromedriver
+
+# Install Unzip
+
+    - name: install unzip
+      apt:
+        package: unzip
+        state: installed
+      register: unzip
+      tags:
+        - unzip
+        - chromedriver
+
+# Install Selenium Chrome driver
+
+    - name: create directory for downloads
+      shell: mkdir -p {{tmp_dir}} creates={{tmp_dir}}
+      tags:
+        - chromedriver
+
+    - name: download chrome driver
+      get_url:
+        url=https://chromedriver.storage.googleapis.com/2.0/chromedriver_linux64.zip
+        dest={{tmp_dir}}/chromedriver-2.0.zip
+      tags:
+        - chromedriver
+
+#    - name: extract chromedriver from archive
+#      shell: unzip -o {{tmp_dir}}/chromedriver-2.0.zip -d {{tmp_dir}}
+#      tags:
+#        - chromedriver
+
+    - unarchive:
+        src: "{{tmp_dir}}/chromedriver-2.0.zip"
+        dest: "{{tmp_dir}}"
+      tags:
+        - chromedriver
+
+    - name: copy executable file for chromedriver
+      shell: cp {{tmp_dir}}/chromedriver //usr//local/sharecd/chromedriver #///usr/share/pyshared/selenium/webdriver/chrome
+      tags:
+        - chromedriver
+
+#    - name: Get the latest release for chromedriver
+#      uri:
+#        url: http://chromedriver.storage.googleapis.com/LATEST_RELEASE
+#        return_content: yes
+#      register: chromedriver_latest
+#      tags: [selenium-chrome]
+#
+#    - name: Install chromedriver
+#      unarchive:
+#        src: "http://chromedriver.storage.googleapis.com/{{ chromedriver_latest.content | trim }}/chromedriver_linux64.zip"
+#        dest: /usr/bin
+#        mode: 0755
+#        copy: no
+#      tags: [selenium-chrome]
+
+# Install Selenium Firefox driver
+
 
 
 
