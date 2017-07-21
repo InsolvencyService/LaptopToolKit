@@ -2,7 +2,6 @@
 # script: install-ansible
 # Description: Setup ansible from PPA on Ubuntu Machine
 # Author: Tom Withers
-# Email: hello@tomwithers.me
 # Changelog: Initial version
 #
 
