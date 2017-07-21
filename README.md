@@ -10,3 +10,7 @@ cd LaptopToolKit
 ```
 
 Run ```ansible-playbook ansible-setup.yml --ask-become-pass```
+
+## Roles
+
+Below is the list of software that Ansible will install. if you have any more requests please open a github ticket!
