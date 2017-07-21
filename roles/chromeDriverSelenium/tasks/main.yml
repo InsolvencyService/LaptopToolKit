@@ -2,6 +2,7 @@
 
 - name: create directory for downloads
   shell: mkdir -p {{tmp_dir}} creates={{tmp_dir}}
+  shell: mkdir -p /usr/local/sharecd/chromedriver
 
 - name: download chrome driver
   get_url:
