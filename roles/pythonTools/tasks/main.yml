@@ -1,0 +1,20 @@
+---
+
+# Install pip
+- name: install pip
+  apt:
+    name: python-pip
+    state: latest
+    update_cache: yes
+
+# Install Virtual Env
+- name: install virtual env
+  apt:
+    name: virtualenv-clone
+    state: latest
+
+- name: install virtual env wrapper
+  apt:
+    name: virtualenvwrapper
+    state: latest
+

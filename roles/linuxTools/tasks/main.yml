@@ -5,3 +5,33 @@
   apt:
     name: htop
     state: latest
+
+# Install Tree
+- name: install tree
+  apt:
+    name: tree
+    state: latest
+
+# Install Whois
+- name: install whois
+  apt:
+    name: whois
+    state: latest
+
+# Install NCDU
+- name: install NCDU
+  apt:
+    name: ncdu
+    state: latest
+
+# Install vim
+- name: install vim
+  apt:
+    name: vim
+    state: latest
+
+# Install Xclip
+- name: install xclip
+  apt:
+    name: xclip
+    state: latest
