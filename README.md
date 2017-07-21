@@ -8,3 +8,5 @@ git clone git@github.com:InsolvencyService/LaptopToolKit.git
 cd LaptopToolKit
 ./install-ansible.sh
 ```
+
+Run ```ansible-playbook ansible-setup.yml --ask-become-pass```

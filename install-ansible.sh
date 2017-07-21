@@ -18,4 +18,5 @@ echo "Installing ansible from ansible ppa repository."
 sudo apt-add-repository -y ppa:ansible/ansible
 sudo apt-get update
 sudo apt-get install -y ansible
+echo
 echo "Ansible has been installed"

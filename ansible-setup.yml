@@ -1,0 +1,11 @@
+---
+
+- name: INSS Ubuntu Tools playbook
+  hosts: localhost
+  roles:
+  # All roles
+    - { role: javajdk, become: true }
+    - { role: virtualbox, become: true }
+    - { role: vagrant, become: true }
+    - { role: docker, become: true }
+    - { role: libreOffice, become: true }
