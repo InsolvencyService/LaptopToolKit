@@ -1,0 +1,6 @@
+---
+
+- name: install selenium tools
+  apt:
+    name: python-selenium
+    state: latest
