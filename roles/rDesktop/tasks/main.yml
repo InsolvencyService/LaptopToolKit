@@ -1,0 +1,6 @@
+---
+
+- name: install rdesktop
+  apt:
+    name: rdesktop
+    state: latest
