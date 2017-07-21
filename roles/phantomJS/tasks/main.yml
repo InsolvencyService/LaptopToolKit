@@ -1,0 +1,6 @@
+---
+
+- name: install phantomjs
+  apt:
+    name: phantomjs
+    state: present

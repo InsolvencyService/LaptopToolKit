@@ -1,0 +1,6 @@
+---
+
+- name: install ruby
+  apt:
+    name: ruby
+    state: latest

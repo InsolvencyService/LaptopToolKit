@@ -1,0 +1,7 @@
+---
+
+- name: install jenkins job builder
+  apt:
+    update_cache: yes
+    name: jenkins-job-builder
+    state: build-dep

@@ -1,0 +1,6 @@
+---
+
+- name: install slack
+  apt:
+    package: slack
+    state: latest
