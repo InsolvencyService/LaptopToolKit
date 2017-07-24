@@ -35,3 +35,9 @@
   apt:
     name: xclip
     state: latest
+
+#Install Terminator
+- name: install terminator
+  apt:
+    name: terminator
+    state: latest
