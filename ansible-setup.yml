@@ -6,6 +6,7 @@
   # All roles
     - { role: chrome, become: true }
     - { role: chromeDriverSelenium, become: true }
+    - { role: firefoxDriverSelenium, become: true }
     - { role: docker, become: true }
     #- { role: java-jdk, become: true }
     - { role: jenkinsJobBuilder, become: true }

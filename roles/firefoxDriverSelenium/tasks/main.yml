@@ -1,0 +1,17 @@
+---
+
+- name: create directory for downloads
+  shell: mkdir -p {{tmp_dir}} creates={{tmp_dir}}
+  shell: mkdir -p /usr/local/sharecd/firefoxdriver
+
+- name: download FireFox driver
+  get_url:
+    url=https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-linux64.tar.gz
+    dest={{tmp_dir}}/geckodriver-v0.18.0-linux64.tar.gz
+
+- unarchive:
+    src: "{{tmp_dir}}/geckodriver-v0.18.0-linux64.tar.gz"
+    dest: "{{tmp_dir}}"
+
+- name: copy executable file for firefox driver
+  shell: cp {{tmp_dir}}/geckodriver //usr//local/sharecd/firefoxdriver
