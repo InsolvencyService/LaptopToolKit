@@ -9,7 +9,7 @@
     - { role: firefoxDriverSelenium, become: true }
     - { role: java-jdk, become: true }
     - { role: jenkinsJobBuilder, become: true }
-    #- { role: JBToolBox, become: true }
+    - { role: JBToolBox, become: true }
     #- { role: libreOffice, become: true }
     - { role: linuxTools, become: true }
     - { role: docker, become: true }
@@ -20,7 +20,7 @@
     - { role: ruby, become: true }
     - { role: seleniumTools, become: true }
     - { role: slack, become: true }
-    - { role: virtualbox, become: true }
+    - { role: virtualbox, become: true, tags: ['vbox'] }
     - { role: vagrant, become: true }
     - { role: vcloudTools, become: true }
   vars:

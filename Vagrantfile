@@ -11,8 +11,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "devbox" do |devbox|
-    devbox.vm.box = 'trusty64'
-    devbox.vm.box_url = 'https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box'
+    devbox.vm.box = 'xenial64'
+    devbox.vm.box_url = 'https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-vagrant.box'
     devbox.ssh.forward_agent = true
   end
 
@@ -20,8 +20,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     devbox_gui.vm.provider :virtualbox do |v|
         v.gui = true
     end
-    devbox_gui.vm.box = 'trusty64'
-    devbox_gui.vm.box_url = 'https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box'
+    devbox_gui.vm.box = 'xenial64'
+    devbox_gui.vm.box_url = 'https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-vagrant.box'
     devbox_gui.ssh.forward_agent = true
     devbox_gui.vm.provision "shell", path: "bootstrap.sh"
     devbox_gui.vm.provision :reload
