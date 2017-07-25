@@ -4,24 +4,24 @@
   hosts: localhost
   roles:
   # All roles
-    #- { role: java-jdk, become: true }
     - { role: chrome, become: true }
-    - { role: slack, become: true }
-    - { role: linuxTools, become: true }
-    - { role: pythonTools, become: true }
-    - { role: seleniumTools, become: true, tags: ['Testers'] }
-    - { role: npm, become: true, tags: ['Testers'] }
-    - { role: phantomJS, become: true, tags: ['Testers'] }
-    - { role: chromeDriverSelenium, become: true, tags: ['Testers'] }
-    - { role: firefoxDriverSelenium, become: true, tags: ['Testers'] }
+    - { role: chromeDriverSelenium, become: true }
+    - { role: firefoxDriverSelenium, become: true }
+    - { role: java-jdk, become: true }
     - { role: docker, become: true }
     - { role: jenkinsJobBuilder, become: true }
-    - { role: ruby, become: true }
+    #- { role: libreOffice, become: true }
+    - { role: linuxTools, become: true }
+    - { role: npm, become: true }
+    - { role: phantomJS, become: true }
+    - { role: pythonTools, become: true }
     - { role: rDesktop, become: true }
+    - { role: ruby, become: true }
+    - { role: seleniumTools, become: true }
+    - { role: slack, become: true }
     - { role: vagrant, become: true }
     - { role: vcloudTools, become: true }
     - { role: virtualbox, become: true }
-    #- { role: libreOffice, become: true }
   vars:
     - google_apt_file: /etc/apt/sources.list.d/google-chrome.list
     - tmp_dir: /tmp/chromedriver

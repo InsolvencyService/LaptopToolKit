@@ -16,3 +16,7 @@
 
 - name: Clean Vagrant deb file
   file: path=/tmp/download-vagrant-latest.deb state=absent
+
+- name: Install Vagrant Plugins
+  shell: vagrant plugin install vagrant-vbguest
+  shell: vagrant plugin install vagrant-reload
