@@ -2,27 +2,29 @@
 
 - name: INSS Ubuntu Tools playbook
   hosts: localhost
+  become: true
   roles:
   # All roles
-    - { role: chrome, become: true }
-    - { role: chromeDriverSelenium, become: true }
-    - { role: firefoxDriverSelenium, become: true }
-    - { role: java-jdk, become: true }
-    - { role: jenkinsJobBuilder, become: true }
-    - { role: JBToolBox, become: true }
-    #- { role: libreOffice, become: true }
-    - { role: linuxTools, become: true }
-    - { role: docker, become: true }
-    - { role: npm, become: true }
-    - { role: phantomJS, become: true }
-    - { role: pythonTools, become: true }
-    - { role: rDesktop, become: true }
-    - { role: ruby, become: true }
-    - { role: seleniumTools, become: true }
-    - { role: slack, become: true }
-    - { role: virtualbox, become: true, tags: ['vbox'] }
-    - { role: vagrant, become: true }
-    - { role: vcloudTools, become: true, tags: ['vcTools'] }
+    - { role: chrome }
+    - { role: chromeDriverSelenium }
+    - { role: firefoxDriverSelenium }
+    - { role: java-jdk }
+    - { role: jenkinsJobBuilder }
+    - { role: JBToolBox }
+    #- { role: libreOffice }
+    - { role: linuxTools }
+    - { role: docker }
+    - { role: npm }
+    - { role: phantomJS }
+    - { role: pythonTools }
+    - { role: rDesktop }
+    - { role: ruby }
+    - { role: seleniumTools }
+    - { role: slack }
+    - { role: virtualbox }
+    - { role: vagrant }
+    - { role: vcloudTools }
+    - { role: postgres, tags: ['postgres'] }
   vars:
     - google_apt_file: /etc/apt/sources.list.d/google-chrome.list
     - tmp_dir: /tmp/chromedriver
