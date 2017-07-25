@@ -8,10 +8,11 @@
     - { role: chromeDriverSelenium, become: true }
     - { role: firefoxDriverSelenium, become: true }
     - { role: java-jdk, become: true }
-    - { role: docker, become: true }
     - { role: jenkinsJobBuilder, become: true }
+    - { role: JBToolBox, become: true }
     #- { role: libreOffice, become: true }
     - { role: linuxTools, become: true }
+    - { role: docker, become: true }
     - { role: npm, become: true }
     - { role: phantomJS, become: true }
     - { role: pythonTools, become: true }
@@ -19,9 +20,9 @@
     - { role: ruby, become: true }
     - { role: seleniumTools, become: true }
     - { role: slack, become: true }
+    - { role: virtualbox, become: true, tags: ['vbox'] }
     - { role: vagrant, become: true }
-    - { role: vcloudTools, become: true }
-    - { role: virtualbox, become: true }
+    - { role: vcloudTools, become: true, tags: ['vcTools'] }
   vars:
     - google_apt_file: /etc/apt/sources.list.d/google-chrome.list
     - tmp_dir: /tmp/chromedriver

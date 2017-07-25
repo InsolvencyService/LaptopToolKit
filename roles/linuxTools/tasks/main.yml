@@ -1,6 +1,6 @@
 ---
 - name: install useful linux packages
-  apt: pkg={{ item }} state=installed update_cache=yes
+  apt: pkg={{ item }} state=installed
   with_items:
         - htop
         - tree

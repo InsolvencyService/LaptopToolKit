@@ -4,4 +4,3 @@
   apt:
     name: open-vm-tools-desktop
     state: latest
-    update_cache: yes
