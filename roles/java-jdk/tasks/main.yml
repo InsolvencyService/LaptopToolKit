@@ -1,7 +1,36 @@
 ---
+- name: Add java repository
+  apt_repository: repo='ppa:webupd8team/java' state=present
 
-- name: Install Default OpenJDK
-  apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
+- name: Accept Java 8 License
+  become: yes
+  debconf:
+    name='oracle-java8-installer'
+    question='shared/accepted-oracle-license-v1-1'
+    value='true'
+    vtype='select'
+
+- name: Install Oracle Java 8
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: latest
   with_items:
-    - default-jdk
-    - default-jre-headless
+    - oracle-java8-installer
+    - ca-certificates
+    - oracle-java8-set-default
+    - git
+    - curl
+
+
+#---
+#
+#- name: Add OracleJDK
+#  apt_repository: repo='ppa:webupd8team/java' state=present
+#
+#- name: Update apt-get
+#  shell: sudo apt-get update
+#
+#- name: Install Default OracleJDK
+#  apt:
+#    name: oracle-java8-installer

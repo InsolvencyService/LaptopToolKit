@@ -1,17 +1,15 @@
 ---
 
-- name: create directory for downloads
-  shell: mkdir -p {{tmp_dir}} creates={{tmp_dir}}
-  shell: mkdir -p /usr/local/sharecd/chromedriver
+- name: create ChromeDriver Directory
+  file:
+    path: /usr/local/sharecd/chromedriver
+    state: directory
+    owner: root
+    group : root
+    mode: 0755
 
-- name: download chrome driver
-  get_url:
-    url=https://chromedriver.storage.googleapis.com/2.0/chromedriver_linux64.zip
-    dest={{tmp_dir}}/chromedriver-2.0.zip
-
-- unarchive:
-    src: "{{tmp_dir}}/chromedriver-2.0.zip"
-    dest: "{{tmp_dir}}"
-
-- name: copy executable file for chromedriver
-  shell: cp {{tmp_dir}}/chromedriver //usr//local/sharecd/chromedriver
+- name: Download and extract ChromeDriver
+  unarchive:
+    src: https://chromedriver.storage.googleapis.com/2.0/chromedriver_linux64.zip
+    dest: /usr/local/sharecd/chromedriver
+    remote_src: True
