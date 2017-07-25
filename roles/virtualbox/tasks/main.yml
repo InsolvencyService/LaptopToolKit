@@ -1,5 +1,12 @@
 ---
 
+- name: remove old installed version
+  apt:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - virtualbox
+
 - name: Configure the Oracle APT key
   apt_key: url=https://www.virtualbox.org/download/oracle_vbox_2016.asc state=present
 
