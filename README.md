@@ -26,6 +26,11 @@ This playbook currently works with
 
 Below is the list of software that Ansible will install. if you have any more requests please open a github ticket!
 
+| Package Name  | Used by       |
+| ------------- |:-------------:|
+|               | Developers    |
+|               | Test Team     |
+|               | DevOps        |
 
 ---
 
