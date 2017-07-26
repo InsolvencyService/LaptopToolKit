@@ -26,6 +26,37 @@ This playbook currently works with
 
 Below is the list of software that Ansible will install. if you have any more requests please open a github ticket!
 
+| Package Name        | Used by       |
+| ------------------- |:-------------:|
+|Java JDK             |               |
+|PostgresSQL          |               |
+|Virtual Box          |               |
+|Vagrant              |               |
+|Vagrant-vbguest      |               |
+|Vagrant-reload       |               |
+|Python pip           |               |
+|Pyhton Virtual Env   |               |
+|Chrome               |               |
+|JetBrains ToolBox    |               |
+|Docker CE            |               |
+|Docker Compose       |               |
+|JenkinsJob Builder   |               |
+|Slack                |               |
+|Selenium             |               |
+|Node Package Manager |               |
+|PhantomJS            |               |
+|FireFox Client       |               |
+|Chrome Client        |               |
+|Ruby                 |               |
+|VCloud Tools         |               |
+|RDesktop             |               |
+|Vim                  |               |
+|NCDU                 |               |
+|Tree                 |               |
+|Whois                |               |
+|Htop                 |               |
+|terminator           |               |
+|Curl                 |               |
 
 ---
 
