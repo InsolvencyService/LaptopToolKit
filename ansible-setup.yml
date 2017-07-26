@@ -11,7 +11,6 @@
     - { role: java-jdk }
     - { role: jenkinsJobBuilder }
     - { role: JBToolBox }
-    #- { role: libreOffice }
     - { role: linuxTools }
     - { role: docker }
     - { role: npm }
@@ -24,7 +23,7 @@
     - { role: virtualbox }
     - { role: vagrant }
     - { role: vcloudTools }
-    - { role: postgres, tags: ['postgres'] }
+    - { role: postgres }
   vars:
     - google_apt_file: /etc/apt/sources.list.d/google-chrome.list
     - tmp_dir: /tmp/chromedriver

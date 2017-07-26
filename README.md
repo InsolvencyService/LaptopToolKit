@@ -27,12 +27,12 @@ This playbook currently works with
 Below is the list of software that Ansible will install. if you have any more requests please open a github ticket!
 
 | Package Name        | Used by       |
-| -------------       |:-------------:|
+| ------------------- |:-------------:|
 |Java JDK             |               |
 |PostgresSQL          |               |
-|Virtual Box          | Developers    |
-|Vagrant              | Test Team     |
-|Vagrant-vbguest      | DevOps        |
+|Virtual Box          |               |
+|Vagrant              |               |
+|Vagrant-vbguest      |               |
 |Vagrant-reload       |               |
 |Python pip           |               |
 |Pyhton Virtual Env   |               |
