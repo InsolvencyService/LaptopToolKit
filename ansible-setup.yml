@@ -24,6 +24,7 @@
     - { role: vagrant }
     - { role: vcloudTools }
     - { role: postgres }
+    - { role: behave, tags: behave }
   vars:
     - google_apt_file: /etc/apt/sources.list.d/google-chrome.list
     - tmp_dir: /tmp/chromedriver
