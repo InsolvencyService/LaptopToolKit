@@ -13,10 +13,6 @@
   copy: content="deb http://dl.google.com/linux/chrome/deb/ stable main" dest={{google_apt_file}} owner=root group=root mode=644
   when: google_apt_exists.rc == 1
 
-- name: Update apt cache
-  apt: update_cache=yes
-  when: google_apt_exists.rc == 1
-
 - name: check if Google Chrome is installed
   stat: path=/usr/bin/google_chrome
   register: google_chrome
