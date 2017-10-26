@@ -21,8 +21,9 @@
     - { role: terminator, become: true }
     - { role: vagrant, become: true }
     - { role: vcloudTools, become: true }
-    - { role: virtualbox, become: true }
+    #- { role: virtualbox, become: true }
 
   vars:
     - google_apt_file: /etc/apt/sources.list.d/google-chrome.list
     - tmp_dir: /tmp/chromedriver
+    - slack_version: 2.5.2
