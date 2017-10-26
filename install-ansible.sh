@@ -6,6 +6,13 @@
 #
 
 echo
+echo "Creating Workspace environment"
+cd ~
+mkdir workspace
+echo
+echo "Workspace has been created"
+
+echo
 echo "Updating apt lists."
 sudo apt-get update
 echo "Installing software-properties-common."

@@ -1,0 +1,15 @@
+---
+
+- name: create toolbox Directory
+  file:
+    path: ~/jetbrains
+    state: directory
+    owner: root
+    group : root
+    mode: 0755
+
+- name: Download and extract toolbox
+  unarchive:
+    src: https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.4.2492.tar.gz
+    dest: ~/jetbrains
+    remote_src: True
