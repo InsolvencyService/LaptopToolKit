@@ -26,7 +26,8 @@ This playbook currently works with
 
 Below is the list of software that Ansible will install. if you have any more requests please open a github ticket!
 
-| Package Name        | Used by       |
+
+| Package Name        | Tag           |
 | ------------------- |:-------------:|
 |Java JDK             |               |
 |PostgresSQL          |               |
@@ -57,6 +58,11 @@ Below is the list of software that Ansible will install. if you have any more re
 |Htop                 |               |
 |terminator           |               |
 |Curl                 |               |
+
+
+You can also use tags to install individual applications.
+
+Run ```ansible-playbook ansible-setup.yml --ask-become-pass  --tags "PLACE_YOUR_TAG_HERE""```
 
 ---
 
