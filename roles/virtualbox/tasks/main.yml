@@ -1,5 +1,4 @@
 ---
-
 - name: remove old installed version
   apt:
     name: "{{ item }}"
@@ -12,9 +11,16 @@
     url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
     state: present
 
+- name: Configure the Oracle APT key pt 2
+  apt_key:
+    url: https://www.virtualbox.org/download/oracle_vbox.asc
+    state: present
+
 - name: Configure the VirtualBox APT repositories
-  apt_repository: repo="deb http://download.virtualbox.org/virtualbox/debian xenial stable"
-                  state=present
+  apt_repository:
+    repo: "deb https://download.virtualbox.org/virtualbox/debian xenial contrib"
+    state: present
+    update_cache: yes
 
 - name: Install VirtualBox {{ virtualbox.version }}
   apt: pkg=virtualbox-{{ virtualbox.version }}
