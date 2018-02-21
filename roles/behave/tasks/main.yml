@@ -1,6 +1,4 @@
 ---
 
 - name: Install behave
-    pip:
-      name: git+https://github.com/behave/behave
-
+  pip: name="git+https://github.com/behave/behave"
